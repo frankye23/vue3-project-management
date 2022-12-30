@@ -265,7 +265,7 @@
               result = await beforeEditSubmit({
                 record: pick(record, keys),
                 index,
-                key: key as string,
+                key,
                 value,
               });
             } catch (e) {

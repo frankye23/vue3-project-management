@@ -242,7 +242,7 @@ export function useFormEvents({
       const values = await validate();
       const res = handleFormValues(values);
       emit('submit', res);
-    } catch (error: any) {
+    } catch (error) {
       throw new Error(error);
     }
   }

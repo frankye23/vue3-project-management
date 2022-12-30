@@ -169,7 +169,7 @@
         color: @breadcrumb-item-normal-color;
 
         a {
-          color: rgb(0 0 0 / 65%);
+          color: rgba(0, 0, 0, 0.65);
 
           &:hover {
             color: @primary-color;
@@ -184,10 +184,10 @@
 
     &--dark {
       .ant-breadcrumb-link {
-        color: rgb(255 255 255 / 60%);
+        color: rgba(255, 255, 255, 0.6);
 
         a {
-          color: rgb(255 255 255 / 80%);
+          color: rgba(255, 255, 255, 0.8);
 
           &:hover {
             color: @white;
@@ -197,7 +197,7 @@
 
       .ant-breadcrumb-separator,
       .anticon {
-        color: rgb(255 255 255 / 80%);
+        color: rgba(255, 255, 255, 0.8);
       }
     }
   }

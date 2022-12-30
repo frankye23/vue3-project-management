@@ -7,7 +7,7 @@ import { PageEnum } from '/@/enums/pageEnum';
 import { ROLES_KEY, TOKEN_KEY, USER_INFO_KEY } from '/@/enums/cacheEnum';
 import { getAuthCache, setAuthCache } from '/@/utils/auth';
 import { GetUserInfoModel, LoginParams } from '/@/api/sys/model/userModel';
-import { doLogout, getUserInfo, loginApi } from '/@/api/sys/user';
+import { getUserInfo, loginApi } from '/@/api/sys/user';
 import { useI18n } from '/@/hooks/web/useI18n';
 import { useMessage } from '/@/hooks/web/useMessage';
 import { router } from '/@/router';
@@ -91,8 +91,10 @@ export const useUserStore = defineStore({
       try {
         const { goHome = true, mode, ...loginParams } = params;
         const data = await loginApi(loginParams, mode);
-        const { token } = data;
-
+        console.log(data);
+        // 视接口返回情况修改，此处是跟随mock的api走的
+        const token = data;
+        console.log(token);
         // save token
         this.setToken(token);
         return this.afterLoginAction(goHome);
@@ -104,7 +106,7 @@ export const useUserStore = defineStore({
       if (!this.getToken) return null;
       // get user info
       const userInfo = await this.getUserInfoAction();
-
+      console.log(userInfo);
       const sessionTimeout = this.sessionTimeout;
       if (sessionTimeout) {
         this.setSessionTimeout(false);
@@ -118,16 +120,25 @@ export const useUserStore = defineStore({
           router.addRoute(PAGE_NOT_FOUND_ROUTE as unknown as RouteRecordRaw);
           permissionStore.setDynamicAddedRoute(true);
         }
-        goHome && (await router.replace(userInfo?.homePath || PageEnum.BASE_HOME));
+
+        goHome && (await router.replace(PageEnum.BASE_HOME));
       }
       return userInfo;
     },
     async getUserInfoAction(): Promise<UserInfo | null> {
       if (!this.getToken) return null;
       const userInfo = await getUserInfo();
-      const { roles = [] } = userInfo;
-      if (isArray(roles)) {
-        const roleList = roles.map((item) => item.value) as RoleEnum[];
+
+      // 视情况修改下行代码 const { roles = [] } = userInfo
+      const { roles = [] } = userInfo?.result;
+      const roleArr: any = [];
+      console.log(5555, roles);
+      roles.forEach((e) => {
+        roleArr.push({ roleName: e, value: e });
+      });
+      console.log(444, roleArr);
+      if (isArray(roleArr)) {
+        const roleList = roleArr.map((item) => item.value) as RoleEnum[];
         this.setRoleList(roleList);
       } else {
         userInfo.roles = [];
@@ -142,7 +153,7 @@ export const useUserStore = defineStore({
     async logout(goLogin = false) {
       if (this.getToken) {
         try {
-          await doLogout();
+          this.resetState();
         } catch {
           console.log('注销Token失败');
         }

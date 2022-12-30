@@ -42,18 +42,19 @@ const transform: AxiosTransform = {
     }
     // 错误的时候返回
 
-    const { data } = res;
-    if (!data) {
-      // return '[HTTP] Request has no return value';
-      throw new Error(t('sys.api.apiRequestFailed'));
-    }
+    const code = res.status;
+    // console.log(res);
+    // if (!data) {
+    //   // return '[HTTP] Request has no return value';
+    //   throw new Error(t('sys.api.apiRequestFailed'));
+    // }
     //  这里 code，result，message为 后台统一的字段，需要在 types.ts内修改为项目自己的接口返回格式
-    const { code, result, message } = data;
+    // const { code, result, message } = data;
 
     // 这里逻辑可以根据项目进行修改
-    const hasSuccess = data && Reflect.has(data, 'code') && code === ResultEnum.SUCCESS;
+    const hasSuccess = code < 400;
     if (hasSuccess) {
-      return result;
+      return res.data;
     }
 
     // 在此处根据自己项目的实际情况对不同的code执行不同的操作
@@ -66,9 +67,12 @@ const transform: AxiosTransform = {
         userStore.setToken(undefined);
         userStore.logout(true);
         break;
+      case ResultEnum.WRONG:
+        timeoutMsg = res.data.message;
+        break;
       default:
-        if (message) {
-          timeoutMsg = message;
+        if (code) {
+          timeoutMsg = '有错误';
         }
     }
 
@@ -135,14 +139,13 @@ const transform: AxiosTransform = {
   /**
    * @description: 请求拦截器处理
    */
-  requestInterceptors: (config, options) => {
+  requestInterceptors: (config) => {
     // 请求之前处理config
-    const token = getToken();
+    // const token = getToken();
+    const token = 'faketoken1';
     if (token && (config as Recordable)?.requestOptions?.withToken !== false) {
       // jwt token
-      (config as Recordable).headers.Authorization = options.authenticationScheme
-        ? `${options.authenticationScheme} ${token}`
-        : token;
+      (config as Recordable).headers.Authorization = token;
     }
     return config;
   },
@@ -174,9 +177,13 @@ const transform: AxiosTransform = {
       if (err?.includes('Network Error')) {
         errMessage = t('sys.api.networkExceptionMsg');
       }
-
+      if (response.status === 400) {
+        errMessage = response.data.message;
+      }
       if (errMessage) {
+        createErrorModal({ title: t('sys.api.errorTip'), content: errMessage });
         if (errorMessageMode === 'modal') {
+          console.log(errMessage);
           createErrorModal({ title: t('sys.api.errorTip'), content: errMessage });
         } else if (errorMessageMode === 'message') {
           createMessage.error(errMessage);
@@ -196,13 +203,8 @@ function createAxios(opt?: Partial<CreateAxiosOptions>) {
   return new VAxios(
     deepMerge(
       {
-        // See https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication#authentication_schemes
-        // authentication schemes，e.g: Bearer
-        // authenticationScheme: 'Bearer',
         authenticationScheme: '',
         timeout: 10 * 1000,
-        // 基础接口地址
-        // baseURL: globSetting.apiUrl,
 
         headers: { 'Content-Type': ContentTypeEnum.JSON },
         // 如果是form-data格式
@@ -240,11 +242,3 @@ function createAxios(opt?: Partial<CreateAxiosOptions>) {
   );
 }
 export const defHttp = createAxios();
-
-// other api url
-// export const otherHttp = createAxios({
-//   requestOptions: {
-//     apiUrl: 'xxx',
-//     urlPrefix: 'xxx',
-//   },
-// });

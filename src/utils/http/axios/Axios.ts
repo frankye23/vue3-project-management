@@ -81,7 +81,6 @@ export class VAxios {
     this.axiosInstance.interceptors.request.use((config: AxiosRequestConfig) => {
       // If cancel repeat request is turned on, then cancel repeat request is prohibited
       const {
-        // @ts-ignore
         headers: { ignoreCancelToken },
       } = config;
 
@@ -150,7 +149,6 @@ export class VAxios {
       data: formData,
       headers: {
         'Content-type': ContentTypeEnum.FORM_DATA,
-        // @ts-ignore
         ignoreCancelToken: true,
       },
     });

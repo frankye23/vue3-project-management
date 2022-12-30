@@ -1,3 +1,12 @@
+/*
+ * @Author: your name
+ * @Date: 2021-10-20 11:42:30
+ * @LastEditTime: 2022-02-28 15:02:46
+ * @LastEditors: your name
+ * @Description:yedaf
+ * @FilePath: \vben-admin-thin-next\src\enums\appEnum.ts
+ * 可以输入预定的版权声明、个性签名、空行等
+ */
 export const SIDE_BAR_MINI_WIDTH = 48;
 export const SIDE_BAR_SHOW_TIT_MINI_WIDTH = 80;
 
@@ -31,7 +40,7 @@ export enum SessionTimeoutProcessingEnum {
 export enum PermissionModeEnum {
   // role
   ROLE = 'ROLE',
-  // black
+  // back
   BACK = 'BACK',
   // route mapping
   ROUTE_MAPPING = 'ROUTE_MAPPING',

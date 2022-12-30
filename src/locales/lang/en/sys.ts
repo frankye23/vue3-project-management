@@ -11,7 +11,7 @@ export default {
       'Please check if your network connection is normal! The network is abnormal',
 
     errMsg401: 'The user does not have permission (token, user name, password error)!',
-    errMsg403: 'The user is authorized, but access is forbidden!',
+    errMsg403: 'The user is not authorized, access is forbidden!',
     errMsg404: 'Network request error, the resource was not found!',
     errMsg405: 'Network request error, request method not allowed!',
     errMsg408: 'Network request timed out!',

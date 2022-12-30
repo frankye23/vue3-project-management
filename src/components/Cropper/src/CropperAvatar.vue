@@ -135,14 +135,15 @@
     }
 
     &-image-mask {
-      opacity: 0%;
+      opacity: 0;
       position: absolute;
       width: inherit;
       height: inherit;
       border-radius: inherit;
       border: inherit;
-      background: rgb(0 0 0 / 40%);
+      background: rgba(0, 0, 0, 0.4);
       cursor: pointer;
+      -webkit-transition: opacity 0.4s;
       transition: opacity 0.4s;
 
       ::v-deep(svg) {
@@ -151,7 +152,7 @@
     }
 
     &-image-mask:hover {
-      opacity: 4000%;
+      opacity: 40;
     }
 
     &-upload-btn {

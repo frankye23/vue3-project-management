@@ -6,8 +6,15 @@
   //===========================================
   //============= Editor ======================
   //===========================================
+  "explorer.openEditors.visible": 0,
   "editor.tabSize": 2,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "diffEditor.ignoreTrimWhitespace": false,
+  //===========================================
+  //============= Other =======================
+  //===========================================
+  "breadcrumbs.enabled": true,
+  "open-in-browser.default": "chrome",
   //===========================================
   //============= files =======================
   //===========================================
@@ -62,9 +69,15 @@
   },
   "stylelint.enable": true,
   "stylelint.packageManager": "yarn",
+  "liveServer.settings.donotShowInfoMsg": true,
+  "telemetry.enableCrashReporter": false,
+  "workbench.settings.enableNaturalLanguageSearch": false,
   "path-intellisense.mappings": {
     "/@/": "${workspaceRoot}/src"
   },
+  "prettier.requireConfig": true,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "workbench.sideBar.location": "left",
   "[javascriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -95,7 +108,8 @@
   "[vue]": {
     "editor.codeActionsOnSave": {
       "source.fixAll.eslint": false
-    }
+    },
+    "editor.defaultFormatter": "Vue.volar"
   },
   "i18n-ally.localesPaths": ["src/locales/lang"],
   "i18n-ally.keystyle": "nested",
@@ -138,5 +152,6 @@
     "brotli",
     "tailwindcss",
     "sider"
-  ]
+  ],
+  "vue3snippets.enable-compile-vue-file-on-did-save-code": false
 }

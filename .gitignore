@@ -12,6 +12,7 @@ tests/server/static/upload
 .env.local
 .env.*.local
 .eslintcache
+config.js
 
 # Log files
 npm-debug.log*

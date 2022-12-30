@@ -10,7 +10,7 @@ export default {
     networkExceptionMsg: '网络异常，请检查您的网络连接是否正常!',
 
     errMsg401: '用户没有权限（令牌、用户名、密码错误）!',
-    errMsg403: '用户得到授权，但是访问是被禁止的。!',
+    errMsg403: '用户未得到授权，访问是被禁止的!',
     errMsg404: '网络请求错误,未找到该资源!',
     errMsg405: '网络请求错误,请求方法未允许!',
     errMsg408: '网络请求超时!',
@@ -65,7 +65,7 @@ export default {
     signUpFormTitle: '注册',
     forgetFormTitle: '重置密码',
 
-    signInTitle: '开箱即用的中后台管理系统',
+    signInTitle: '管理后台',
     signInDesc: '输入您的个人详细信息开始使用！',
     policy: '我同意xxx隐私政策',
     scanSign: `扫码后点击"确认"，即可完成登录`,

@@ -22,7 +22,7 @@ import { getMenuList } from '/@/api/sys/menu';
 import { getPermCode } from '/@/api/sys/user';
 
 import { useMessage } from '/@/hooks/web/useMessage';
-import { PageEnum } from '/@/enums/pageEnum';
+// import { PageEnum } from '/@/enums/pageEnum';
 
 interface PermissionState {
   // Permission code list
@@ -121,7 +121,7 @@ export const usePermissionStore = defineStore({
       /**
        * @description 根据设置的首页path，修正routes中的affix标记（固定首页）
        * */
-      const patchHomeAffix = (routes: AppRouteRecordRaw[]) => {
+      /* const patchHomeAffix = (routes: AppRouteRecordRaw[]) => {
         if (!routes || routes.length === 0) return;
         let homePath: string = userStore.getUserInfo.homePath || PageEnum.BASE_HOME;
         function patcher(routes: AppRouteRecordRaw[], parentPath = '') {
@@ -146,7 +146,7 @@ export const usePermissionStore = defineStore({
           // 已处理完毕跳出循环
         }
         return;
-      };
+      }; */
 
       switch (permissionMode) {
         case PermissionModeEnum.ROLE:
@@ -207,7 +207,7 @@ export const usePermissionStore = defineStore({
       }
 
       routes.push(ERROR_LOG_ROUTE);
-      patchHomeAffix(routes);
+      // patchHomeAffix(routes);
       return routes;
     },
   },

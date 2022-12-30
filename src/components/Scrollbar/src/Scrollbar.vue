@@ -148,7 +148,7 @@
           display: none;
           width: 0;
           height: 0;
-          opacity: 0%;
+          opacity: 0;
         }
       }
     }
@@ -159,12 +159,12 @@
       width: 0;
       height: 0;
       cursor: pointer;
-      background-color: rgb(144 147 153 / 30%);
+      background-color: rgba(144, 147, 153, 0.3);
       border-radius: inherit;
       transition: 0.3s background-color;
 
       &:hover {
-        background-color: rgb(144 147 153 / 50%);
+        background-color: rgba(144, 147, 153, 0.5);
       }
     }
 
@@ -174,7 +174,8 @@
       bottom: 2px;
       z-index: 1;
       border-radius: 4px;
-      opacity: 0%;
+      opacity: 0;
+      -webkit-transition: opacity 80ms ease;
       transition: opacity 80ms ease;
 
       &.is-vertical {
@@ -200,7 +201,7 @@
   .scrollbar:active > .scrollbar__bar,
   .scrollbar:focus > .scrollbar__bar,
   .scrollbar:hover > .scrollbar__bar {
-    opacity: 100%;
+    opacity: 1;
     transition: opacity 340ms ease-out;
   }
 </style>

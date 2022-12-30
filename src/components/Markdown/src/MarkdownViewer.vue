@@ -1,5 +1,4 @@
 <template>
-  <!-- eslint-disable vue/no-v-html -->
   <div v-html="getHtmlData" :class="$props.class" class="markdown-viewer"></div>
 </template>
 

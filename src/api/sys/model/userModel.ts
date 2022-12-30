@@ -2,8 +2,9 @@
  * @description: Login interface parameters
  */
 export interface LoginParams {
-  username: string;
+  account: string;
   password: string;
+  type: string;
 }
 
 export interface RoleInfo {
@@ -24,15 +25,19 @@ export interface LoginResultModel {
  * @description: Get user information return value
  */
 export interface GetUserInfoModel {
+  email: string;
+  have_pay_password: number;
+  have_totp_auth: number;
+  lang: string;
+  last_login_time: string;
+  phone: string;
+  phone_code: string;
+  refer_code: string;
+  register_ip: string;
   roles: RoleInfo[];
-  // 用户id
-  userId: string | number;
-  // 用户名
-  username: string;
-  // 真实名字
-  realName: string;
-  // 头像
-  avatar: string;
-  // 介绍
-  desc?: string;
+  seconde_login: number;
+  timezone: string;
+  uid: string;
+  verfied_email: number;
+  verfied_phone: number;
 }

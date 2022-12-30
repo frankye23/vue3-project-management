@@ -58,6 +58,16 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       port: VITE_PORT,
       // Load proxy configuration from .env
       proxy: createProxy(VITE_PROXY),
+      // 使用的时候取消下面注释，并且注释上方代码即可
+      // proxy: {
+      //   '/v1': {
+      //     // target: 'http://47.101.48.191:8088/',
+      //     target: config.baseURL,
+      //     changeOrigin: true,
+      //     ws: true,
+      //     // rewrite: (path) => path.replace(new RegExp(`^/api`), ``),
+      //   },
+      // },
     },
     build: {
       target: 'es2015',

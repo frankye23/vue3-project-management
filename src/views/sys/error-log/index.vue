@@ -1,3 +1,12 @@
+<!--
+ * @Author: your name
+ * @Date: 2022-02-28 17:13:40
+ * @LastEditTime: 2022-03-29 13:57:28
+ * @LastEditors: your name
+ * @Description: 
+ * @FilePath: \apollo_backend\src\views\sys\error-log\index.vue
+ * 可以输入预定的版权声明、个性签名、空行等
+-->
 <template>
   <div class="p-4">
     <template v-for="src in imgList" :key="src">
@@ -11,9 +20,6 @@
         </a-button>
         <a-button @click="fireResourceError" type="primary">
           {{ t('sys.errorLog.fireResourceError') }}
-        </a-button>
-        <a-button @click="fireAjaxError" type="primary">
-          {{ t('sys.errorLog.fireAjaxError') }}
         </a-button>
       </template>
       <template #action="{ record }">
@@ -36,7 +42,7 @@
   import { useMessage } from '/@/hooks/web/useMessage';
   import { useI18n } from '/@/hooks/web/useI18n';
   import { useErrorLogStore } from '/@/store/modules/errorLog';
-  import { fireErrorApi } from '/@/api/demo/error';
+
   import { getColumns } from './data';
   import { cloneDeep } from 'lodash-es';
 
@@ -84,9 +90,5 @@
 
   function fireResourceError() {
     imgList.value.push(`${new Date().getTime()}.png`);
-  }
-
-  async function fireAjaxError() {
-    await fireErrorApi();
   }
 </script>

@@ -13,7 +13,7 @@
     <link rel="icon" href="/favicon.ico" />
   </head>
   <body>
-    <script>
+    <script type="module">
       (() => {
         var htmlRoot = document.getElementById('htmlRoot');
         var theme = window.localStorage.getItem('__APP__DARK__MODE__');
@@ -22,6 +22,10 @@
           theme = htmlRoot = null;
         }
       })();
+      // 兼容ts在node环境下aws-sdk报错的问题，global is not defined
+      // if (global === undefined) {
+      //   var global = window;
+      // }
     </script>
     <div id="app">
       <style>

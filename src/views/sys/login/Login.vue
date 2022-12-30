@@ -6,15 +6,9 @@
       v-if="!sessionTimeout && showLocale"
     />
     <AppDarkModeToggle class="absolute top-3 right-7 enter-x" v-if="!sessionTimeout" />
-
-    <span class="-enter-x xl:hidden">
-      <AppLogo :alwaysShowTitle="true" />
-    </span>
-
     <div class="container relative h-full py-2 mx-auto sm:px-10">
       <div class="flex h-full">
         <div class="hidden min-h-full pl-4 mr-4 xl:flex xl:flex-col xl:w-6/12">
-          <AppLogo class="-enter-x" />
           <div class="my-auto">
             <img
               :alt="title"
@@ -22,10 +16,9 @@
               class="w-1/2 -mt-16 -enter-x"
             />
             <div class="mt-10 font-medium text-white -enter-x">
-              <span class="inline-block mt-4 text-3xl"> {{ t('sys.login.signInTitle') }}</span>
-            </div>
-            <div class="mt-5 font-normal text-white text-md dark:text-gray-500 -enter-x">
-              {{ t('sys.login.signInDesc') }}
+              <span class="mt-4 text-3xl ml-16">
+                {{ t('sys.login.signInTitle') }}
+              </span>
             </div>
           </div>
         </div>
@@ -53,8 +46,6 @@
             <LoginForm />
             <ForgetPasswordForm />
             <RegisterForm />
-            <MobileForm />
-            <QrCodeForm />
           </div>
         </div>
       </div>
@@ -63,13 +54,11 @@
 </template>
 <script lang="ts" setup>
   import { computed } from 'vue';
-  import { AppLogo } from '/@/components/Application';
   import { AppLocalePicker, AppDarkModeToggle } from '/@/components/Application';
   import LoginForm from './LoginForm.vue';
   import ForgetPasswordForm from './ForgetPasswordForm.vue';
   import RegisterForm from './RegisterForm.vue';
-  import MobileForm from './MobileForm.vue';
-  import QrCodeForm from './QrCodeForm.vue';
+
   import { useGlobSetting } from '/@/hooks/setting';
   import { useI18n } from '/@/hooks/web/useI18n';
   import { useDesign } from '/@/hooks/web/useDesign';
