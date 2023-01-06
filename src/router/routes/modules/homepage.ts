@@ -23,14 +23,6 @@ const dashboard: AppRouteModule = {
         title: t('routes.homepage.banner'),
       },
     },
-    {
-      path: 'recommend',
-      name: 'recommend',
-      component: () => import('/@/views/homepage/recommend/index.vue'),
-      meta: {
-        title: t('routes.homepage.recommend'),
-      },
-    },
   ],
 };
 

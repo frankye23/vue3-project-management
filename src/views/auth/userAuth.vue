@@ -109,9 +109,10 @@
       page_size: state.pageSize,
       offset: (state.currentPage - 1) * state.pageSize,
     };
-    const data = await getRoleList(params);
-    state.tableArr = data.items;
-    state.totalCount = data.total_count;
+    // const data = await getRoleList(params);
+    // state.tableArr = data.items;
+    state.tableArr = [];
+    // state.totalCount = data.total_count;
     loading.value = false;
   }
   // 分页器

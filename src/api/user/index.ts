@@ -1,12 +1,3 @@
-/*
- * @Author: your name
- * @Date: 2022-04-08 13:48:42
- * @LastEditTime: 2022-04-25 14:35:30
- * @LastEditors: your name
- * @Description:
- * @FilePath: \apollo_backend\src\api\user\index.ts
- * 可以输入预定的版权声明、个性签名、空行等
- */
 import { defHttp } from '/@/utils/http/axios';
 
 enum Api {

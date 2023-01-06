@@ -5,6 +5,7 @@ export function createFakeUserList() {
   return [
     {
       userId: '1',
+      uid: 'yedaf',
       username: 'yedaf98@gmail.com',
       realName: 'yedaf',
       avatar: 'https://q1.qlogo.cn/g?b=qq&nk=190848757&s=640',
@@ -16,19 +17,15 @@ export function createFakeUserList() {
     },
     {
       userId: '2',
+      uid: 'test',
       username: 'test',
       password: '123456',
       realName: 'test user',
       avatar: 'https://q1.qlogo.cn/g?b=qq&nk=339449197&s=640',
       desc: 'tester',
-      token: 'fakeToken2',
-      homePath: '/dashboard/workbench',
-      roles: [
-        {
-          roleName: 'Tester',
-          value: 'test',
-        },
-      ],
+      token: 'faketoken2',
+      homePath: '/dashboard/analysis',
+      roles: ['finance'],
     },
   ];
 }

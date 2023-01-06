@@ -33,29 +33,16 @@
   let image_key = nanoid();
   const uploadFile = ref();
   const loading = ref<boolean>(false);
-  // const aws_s3_url = 'https://dxpool.s3.ap-northeast-1.amazonaws.com/';
+
   const imageUrl = ref<string>('');
   const picUrl = ref<string>('');
 
   const handleChange = (info: FileInfo) => {
-    // if (info.file.status === 'uploading') {
-    //   loading.value = true;
-    //   // return;
-    // }
-    // if (info.file.status === 'done') {
-    //   // Get this url from response in real world.
-    //   getBase64(info.file.originFileObj, (base64Url: string) => {
-    //     console.log(base64Url);
-    //     imageUrl.value = base64Url;
-    //     loading.value = false;
-    //   });
-    // }
     if (info.file.status === 'error') {
       loading.value = false;
       message.error('upload error');
     }
     getBase64(info.file.originFileObj, (base64Url: string) => {
-      console.log(base64Url);
       imageUrl.value = base64Url;
       loading.value = false;
     });
@@ -66,28 +53,31 @@
     if (!isJpgOrPng) {
       message.error('You can only upload JPG file!');
     }
-    // const isLt2M = file.size / 1024 / 1024 < 2;
-    // if (!isLt2M) {
-    //   message.error('Image must smaller than 2MB!');
-    // }
+
     uploadFile.value = file;
     console.log(uploadFile.value);
   };
-  const s3 = ref();
-  //将s3的调用放在s3初始化下方，否则会报错
-  s3.value = new S3Client({
-    apiVersion: '2006-03-01',
-    params: { Bucket: 'dxpool' },
-    // client: new CognitoIdentityClient({ region: 'ap-northeast-1' }),
-    region: 'ap-northeast-1',
-    credentials: fromCognitoIdentityPool({
-      client: new CognitoIdentityClient({ region: 'ap-northeast-1' }),
-      identityPoolId: 'ap-northeast-1:c0769e44-22d9-4825-9bd5-fc80903eceec',
-    }),
-  });
+  // 解开注释
+  // const s3 = ref();
+  // //将s3的调用放在s3初始化下方，否则会报错
+  // // 以下的内容都需要填写
+  // s3.value = new S3Client({
+  //   apiVersion: '2006-03-01',
+  //   // 这里填写bucket
+  //   params: { Bucket: '' },
+  //   // 填写地区
+  //   region: '',
+  //   credentials: fromCognitoIdentityPool({
+  //     // 这里填写地区，
+  //     client: new CognitoIdentityClient({ region: '' }),
+  //     // 这里填写poolId
+  //     identityPoolId: '',
+  //   }),
+  // });
   async function uploading() {
     const params = {
-      Bucket: 'dxpool',
+      // 填写bucket
+      Bucket: '',
       Key: image_key,
       Body: uploadFile.value,
       CacheControl: 'max-age=259200',
@@ -106,28 +96,13 @@
     reader.readAsDataURL(img);
   }
   function handleSuccess(res) {
-    //res.key用于对图片的请求
-    // this.formData.icon = res.key;
     console.log(res);
     loading.value = false;
   }
   function getPic() {
-    picUrl.value = 'https://dxpool.s3.ap-northeast-1.amazonaws.com/' + 'jK-euA4zDYCQKfnSU3v-a';
+    // amazon地址,xxx.s3.region.amazonaws.com,后一个填对应的Key
+    picUrl.value = 'address' + 'picKey';
   }
-  // const dataSource = [
-  //   {
-  //     key: '1',
-  //     name: 'yedaf',
-  //     age: 32,
-  //     address: '西湖区湖底公园1号',
-  //   },
-  //   {
-  //     key: '2',
-  //     name: 'frank',
-  //     age: 42,
-  //     address: '西湖区湖底公园1号',
-  //   },
-  // ];
 </script>
 <style>
   .wrapper {

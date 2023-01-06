@@ -1,12 +1,3 @@
-<!--
- * @Author: your name
- * @Date: 2022-02-28 17:13:40
- * @LastEditTime: 2022-03-29 13:57:28
- * @LastEditors: your name
- * @Description: 
- * @FilePath: \apollo_backend\src\views\sys\error-log\index.vue
- * 可以输入预定的版权声明、个性签名、空行等
--->
 <template>
   <div class="p-4">
     <template v-for="src in imgList" :key="src">

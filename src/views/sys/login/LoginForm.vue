@@ -100,7 +100,8 @@
       if (userInfo) {
         notification.success({
           message: t('sys.login.loginSuccessTitle'),
-          description: `${t('sys.login.loginSuccessDesc')}: ${userInfo.uid}`,
+          // may need to change according to api results
+          description: `${t('sys.login.loginSuccessDesc')}: ${userInfo.result.uid}`,
           duration: 3,
         });
       }

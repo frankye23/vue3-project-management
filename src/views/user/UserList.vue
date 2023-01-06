@@ -170,18 +170,19 @@
       page_size: state.pageSize,
       offset: (state.currentPage - 1) * state.pageSize,
     };
-    const data = await getUserList(params);
-    state.totalCount = data.total_count;
-    if (state.totalCount !== 0) {
-      for (let i = 0; i < data.items.length; i++) {
-        data.items[i].created_at = formatToDateTime(data.items[i].created_at);
-        data.items[i].updated_at = formatToDateTime(data.items[i].updated_at);
-        data.items[i].last_login_time = formatToDateTime(data.items[i].last_login_time);
-      }
-      state.userTable = data.items;
-    } else {
-      state.userTable = [];
-    }
+    // const data = await getUserList(params);
+    // state.totalCount = data.total_count;
+    // if (state.totalCount !== 0) {
+    //   for (let i = 0; i < data.items.length; i++) {
+    //     data.items[i].created_at = formatToDateTime(data.items[i].created_at);
+    //     data.items[i].updated_at = formatToDateTime(data.items[i].updated_at);
+    //     data.items[i].last_login_time = formatToDateTime(data.items[i].last_login_time);
+    //   }
+    //   state.userTable = data.items;
+    // } else {
+    //   state.userTable = [];
+    // }
+    state.userTable = [];
     loading.value = false;
   }
   // 分页器

@@ -248,20 +248,21 @@
       page_size: state.pageSize,
       offset: (state.currentPage - 1) * state.pageSize,
     };
-    const data = await getCurrencyList(params);
-    state.totalCount = data.total_count;
-    if (state.totalCount !== 0) {
-      for (let i = 0; i < data.items.length; i++) {
-        data.items[i].display = data.items[i].display === 0 ? '否' : '是';
-        data.items[i].is_active = data.items[i].is_active === 0 ? '否' : '是';
-        data.items[i].is_new = data.items[i].is_new === 0 ? '否' : '是';
-        data.items[i].created_at = formatToDateTime(data.items[i].created_at);
-        data.items[i].updated_at = formatToDateTime(data.items[i].updated_at);
-      }
-      state.currencyTable = data.items;
-    } else {
-      state.currencyTable = [];
-    }
+    // const data = await getCurrencyList(params);
+    // state.totalCount = data.total_count;
+    // if (state.totalCount !== 0) {
+    //   for (let i = 0; i < data.items.length; i++) {
+    //     data.items[i].display = data.items[i].display === 0 ? '否' : '是';
+    //     data.items[i].is_active = data.items[i].is_active === 0 ? '否' : '是';
+    //     data.items[i].is_new = data.items[i].is_new === 0 ? '否' : '是';
+    //     data.items[i].created_at = formatToDateTime(data.items[i].created_at);
+    //     data.items[i].updated_at = formatToDateTime(data.items[i].updated_at);
+    //   }
+    //   state.currencyTable = data.items;
+    // } else {
+    //   state.currencyTable = [];
+    // }
+    state.currencyTable = []
     loading.value = false;
   }
   // 分页器
